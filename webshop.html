@@ -1,0 +1,1266 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Web Shom | Diseño y desarrollo de páginas web</title>
+  <meta name="description" content="Web Shom crea páginas web profesionales, modernas, rápidas y adaptadas a tu negocio. Diseño web, tiendas online, formularios, carrito y links de pago.">
+  <style>
+    :root {
+      --bg: #050914;
+      --bg-soft: #0a1224;
+      --panel: #0f1b33;
+      --panel-2: #111f3d;
+      --blue: #1f8cff;
+      --blue-2: #55b6ff;
+      --white: #ffffff;
+      --muted: #9fb0cc;
+      --line: rgba(255, 255, 255, .12);
+      --shadow: 0 24px 70px rgba(0, 0, 0, .35);
+      --radius: 8px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--white);
+      background:
+        radial-gradient(circle at 20% 10%, rgba(31, 140, 255, .22), transparent 32rem),
+        radial-gradient(circle at 80% 0%, rgba(85, 182, 255, .13), transparent 30rem),
+        linear-gradient(180deg, #050914 0%, #081124 48%, #050914 100%);
+      line-height: 1.5;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    input,
+    textarea {
+      font: inherit;
+    }
+
+    .container {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      border-bottom: 1px solid var(--line);
+      background: rgba(5, 9, 20, .82);
+      backdrop-filter: blur(18px);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 72px;
+      gap: 18px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      letter-spacing: .2px;
+    }
+
+    .brand-mark {
+      display: grid;
+      place-items: center;
+      width: 38px;
+      height: 38px;
+      border: 1px solid rgba(255, 255, 255, .18);
+      border-radius: var(--radius);
+      background: linear-gradient(135deg, var(--blue), #0c4ea8);
+      box-shadow: 0 10px 34px rgba(31, 140, 255, .28);
+    }
+
+    .brand-mark svg,
+    .icon svg {
+      width: 20px;
+      height: 20px;
+      stroke: currentColor;
+      stroke-width: 2;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      color: var(--muted);
+      font-size: .95rem;
+    }
+
+    .nav-links a {
+      transition: color .2s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--white);
+    }
+
+    .nav-cta,
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 44px;
+      padding: 0 18px;
+      border-radius: var(--radius);
+      border: 1px solid rgba(255, 255, 255, .12);
+      background: linear-gradient(135deg, var(--blue), #1267d6);
+      color: var(--white);
+      font-weight: 750;
+      box-shadow: 0 16px 34px rgba(31, 140, 255, .24);
+      transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+      cursor: pointer;
+    }
+
+    .btn:hover,
+    .nav-cta:hover {
+      transform: translateY(-2px);
+      border-color: rgba(255, 255, 255, .32);
+      box-shadow: 0 22px 42px rgba(31, 140, 255, .32);
+    }
+
+    .btn.secondary {
+      background: rgba(255, 255, 255, .06);
+      color: var(--white);
+      box-shadow: none;
+    }
+
+    .menu-toggle {
+      display: none;
+      width: 44px;
+      height: 44px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, .06);
+      color: var(--white);
+    }
+
+    .hero {
+      position: relative;
+      padding: 94px 0 76px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.02fr) minmax(320px, .78fr);
+      gap: 54px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 18px;
+      padding: 8px 12px;
+      border: 1px solid rgba(85, 182, 255, .28);
+      border-radius: 999px;
+      color: #c7e8ff;
+      background: rgba(31, 140, 255, .1);
+      font-size: .88rem;
+      font-weight: 700;
+    }
+
+    h1 {
+      max-width: 800px;
+      font-size: clamp(2.55rem, 7vw, 5.2rem);
+      line-height: .95;
+      letter-spacing: 0;
+      margin-bottom: 22px;
+    }
+
+    .gradient-text {
+      color: var(--blue-2);
+    }
+
+    .hero p {
+      max-width: 620px;
+      color: var(--muted);
+      font-size: clamp(1.05rem, 2vw, 1.25rem);
+      margin-bottom: 30px;
+    }
+
+    .hero-actions,
+    .section-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 38px;
+      max-width: 620px;
+    }
+
+    .stat {
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, .045);
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 1.45rem;
+      color: var(--white);
+    }
+
+    .stat span {
+      color: var(--muted);
+      font-size: .88rem;
+    }
+
+    .preview {
+      position: relative;
+      border: 1px solid rgba(255, 255, 255, .14);
+      border-radius: 14px;
+      background: linear-gradient(180deg, rgba(17, 31, 61, .96), rgba(7, 13, 28, .96));
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      animation: float 5.5s ease-in-out infinite;
+    }
+
+    .preview-top {
+      display: flex;
+      gap: 7px;
+      padding: 14px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .preview-top span {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #ff5d5d;
+    }
+
+    .preview-top span:nth-child(2) {
+      background: #ffcc4d;
+    }
+
+    .preview-top span:nth-child(3) {
+      background: #35d07f;
+    }
+
+    .preview-body {
+      padding: 22px;
+    }
+
+    .mock-hero {
+      display: grid;
+      grid-template-columns: 1fr 112px;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+
+    .mock-line {
+      height: 12px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, .13);
+      margin-bottom: 10px;
+    }
+
+    .mock-line.short {
+      width: 62%;
+    }
+
+    .mock-title {
+      height: 48px;
+      border-radius: var(--radius);
+      background: linear-gradient(135deg, rgba(85, 182, 255, .36), rgba(31, 140, 255, .08));
+      margin-bottom: 14px;
+    }
+
+    .mock-image {
+      min-height: 130px;
+      border-radius: var(--radius);
+      background:
+        linear-gradient(135deg, rgba(31, 140, 255, .75), rgba(85, 182, 255, .15)),
+        repeating-linear-gradient(45deg, transparent 0 12px, rgba(255, 255, 255, .08) 12px 14px);
+    }
+
+    .mock-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    .mock-card {
+      min-height: 92px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, .055);
+      padding: 12px;
+    }
+
+    .mock-card::before,
+    .mock-card::after {
+      content: "";
+      display: block;
+      height: 9px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, .15);
+      margin-bottom: 10px;
+    }
+
+    .mock-card::after {
+      width: 58%;
+      background: rgba(85, 182, 255, .35);
+    }
+
+    section {
+      padding: 78px 0;
+      border-top: 1px solid rgba(255, 255, 255, .07);
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      align-items: end;
+      margin-bottom: 34px;
+    }
+
+    .section-kicker {
+      color: var(--blue-2);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      font-size: .78rem;
+      margin-bottom: 9px;
+    }
+
+    h2 {
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      line-height: 1.05;
+      max-width: 760px;
+    }
+
+    .section-head p,
+    .muted {
+      color: var(--muted);
+      max-width: 560px;
+    }
+
+    .grid {
+      display: grid;
+      gap: 16px;
+    }
+
+    .services-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .card {
+      position: relative;
+      min-height: 100%;
+      padding: 22px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255, 255, 255, .065), rgba(255, 255, 255, .032));
+      transition: transform .22s ease, border-color .22s ease, background .22s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      border-color: var(--blue);
+      background: linear-gradient(180deg, rgba(31, 140, 255, .12), rgba(255, 255, 255, .035));
+    }
+
+    .icon {
+      display: grid;
+      place-items: center;
+      width: 42px;
+      height: 42px;
+      margin-bottom: 18px;
+      border-radius: var(--radius);
+      color: #d9f1ff;
+      background: rgba(31, 140, 255, .16);
+      border: 1px solid rgba(85, 182, 255, .26);
+    }
+
+    .card h3 {
+      margin-bottom: 10px;
+      font-size: 1.05rem;
+    }
+
+    .card p,
+    .card li {
+      color: var(--muted);
+      font-size: .95rem;
+    }
+
+    .pricing-grid {
+      grid-template-columns: 1.15fr .85fr;
+      align-items: stretch;
+    }
+
+    .price-card {
+      padding: 30px;
+      border: 1px solid rgba(85, 182, 255, .34);
+      border-radius: 12px;
+      background:
+        linear-gradient(135deg, rgba(31, 140, 255, .18), transparent 38%),
+        linear-gradient(180deg, rgba(255, 255, 255, .085), rgba(255, 255, 255, .035));
+      box-shadow: var(--shadow);
+    }
+
+    .price {
+      display: flex;
+      align-items: flex-end;
+      gap: 10px;
+      margin: 18px 0;
+    }
+
+    .price strong {
+      font-size: clamp(2.5rem, 6vw, 4.25rem);
+      line-height: 1;
+    }
+
+    .feature-list {
+      display: grid;
+      gap: 12px;
+      margin: 22px 0;
+      list-style: none;
+    }
+
+    .feature-list li {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      color: #d9e5f8;
+    }
+
+    .feature-list li::before {
+      content: "";
+      flex: 0 0 8px;
+      width: 8px;
+      height: 8px;
+      margin-top: 8px;
+      border-radius: 50%;
+      background: var(--blue-2);
+      box-shadow: 0 0 16px rgba(85, 182, 255, .8);
+    }
+
+    .mini-prices {
+      display: grid;
+      gap: 16px;
+    }
+
+    .process {
+      counter-reset: step;
+      grid-template-columns: repeat(5, 1fr);
+    }
+
+    .step {
+      padding: 20px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, .045);
+    }
+
+    .step::before {
+      counter-increment: step;
+      content: "0" counter(step);
+      display: inline-flex;
+      margin-bottom: 18px;
+      color: var(--blue-2);
+      font-weight: 900;
+    }
+
+    .gallery-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .project {
+      overflow: hidden;
+      padding: 0;
+    }
+
+    .project-visual {
+      position: relative;
+      display: flex;
+      align-items: flex-end;
+      min-height: 190px;
+      padding: 18px;
+      border-bottom: 1px solid var(--line);
+      background:
+        linear-gradient(135deg, rgba(31, 140, 255, .85), rgba(12, 24, 50, .2)),
+        linear-gradient(90deg, rgba(255, 255, 255, .16) 0 1px, transparent 1px 100%),
+        linear-gradient(0deg, rgba(255, 255, 255, .12) 0 1px, transparent 1px 100%);
+      background-size: auto, 34px 34px, 34px 34px;
+    }
+
+    .project-visual.ima-games {
+      background:
+        linear-gradient(180deg, rgba(5, 9, 20, .12), rgba(5, 9, 20, .82)),
+        url("logo-ima-games.png") center / min(72%, 300px) no-repeat,
+        linear-gradient(135deg, rgba(31, 140, 255, .72), rgba(9, 16, 34, .98));
+    }
+
+    .project-badge {
+      display: inline-flex;
+      align-items: center;
+      min-height: 30px;
+      padding: 0 10px;
+      border: 1px solid rgba(255, 255, 255, .18);
+      border-radius: 999px;
+      color: #d9f1ff;
+      background: rgba(5, 9, 20, .58);
+      font-size: .78rem;
+      font-weight: 800;
+      backdrop-filter: blur(12px);
+    }
+
+    .project:nth-child(2) .project-visual {
+      background:
+        linear-gradient(135deg, rgba(85, 182, 255, .72), rgba(9, 16, 34, .45)),
+        radial-gradient(circle at 72% 38%, rgba(255, 255, 255, .22), transparent 14rem);
+    }
+
+    .project:nth-child(3) .project-visual {
+      background:
+        linear-gradient(135deg, rgba(13, 83, 174, .9), rgba(85, 182, 255, .2)),
+        repeating-linear-gradient(135deg, rgba(255, 255, 255, .1) 0 10px, transparent 10px 20px);
+    }
+
+    .project-content {
+      padding: 20px;
+    }
+
+    .project-content .btn {
+      min-height: 38px;
+      margin-top: 16px;
+      padding: 0 14px;
+      font-size: .9rem;
+    }
+
+    .project-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .project-meta span {
+      padding: 6px 9px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: #cfe0f8;
+      background: rgba(255, 255, 255, .045);
+      font-size: .78rem;
+      font-weight: 700;
+    }
+
+    .split {
+      display: grid;
+      grid-template-columns: .9fr 1.1fr;
+      gap: 34px;
+      align-items: start;
+    }
+
+    .testimonial-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .quote {
+      color: #d9e5f8;
+      font-size: 1rem;
+      margin-bottom: 18px;
+    }
+
+    .person {
+      color: var(--blue-2);
+      font-weight: 800;
+    }
+
+    .faq-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    details {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, .045);
+      padding: 18px 20px;
+    }
+
+    summary {
+      cursor: pointer;
+      font-weight: 800;
+    }
+
+    details p {
+      color: var(--muted);
+      margin-top: 12px;
+    }
+
+    .contact-panel {
+      display: grid;
+      grid-template-columns: .86fr 1.14fr;
+      gap: 18px;
+      padding: 24px;
+      border: 1px solid rgba(85, 182, 255, .26);
+      border-radius: 14px;
+      background:
+        linear-gradient(135deg, rgba(31, 140, 255, .18), transparent 44%),
+        rgba(255, 255, 255, .04);
+      box-shadow: var(--shadow);
+    }
+
+    .contact-methods {
+      display: grid;
+      gap: 12px;
+      margin-top: 22px;
+    }
+
+    .contact-method {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      padding: 14px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, .045);
+    }
+
+    form {
+      display: grid;
+      gap: 12px;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(5, 9, 20, .72);
+      color: var(--white);
+      padding: 14px 15px;
+      outline: none;
+      transition: border-color .2s ease, box-shadow .2s ease;
+    }
+
+    input:focus,
+    textarea:focus {
+      border-color: rgba(85, 182, 255, .75);
+      box-shadow: 0 0 0 4px rgba(31, 140, 255, .14);
+    }
+
+    textarea {
+      min-height: 134px;
+      resize: vertical;
+    }
+
+    .footer {
+      padding: 30px 0;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .socials {
+      display: flex;
+      gap: 10px;
+    }
+
+    .socials a {
+      display: grid;
+      place-items: center;
+      width: 38px;
+      height: 38px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, .05);
+      transition: transform .2s ease, border-color .2s ease;
+    }
+
+    .socials a:hover {
+      transform: translateY(-2px);
+      border-color: rgba(85, 182, 255, .5);
+    }
+
+    .whatsapp-float {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      z-index: 30;
+      display: grid;
+      place-items: center;
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      background: #25d366;
+      color: #04120a;
+      box-shadow: 0 18px 36px rgba(37, 211, 102, .3);
+      transition: transform .2s ease;
+    }
+
+    .whatsapp-float:hover {
+      transform: translateY(-4px) scale(1.03);
+    }
+
+    .whatsapp-float svg {
+      width: 28px;
+      height: 28px;
+      fill: currentColor;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity .8s ease-out, transform .8s ease-out;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-12px);
+      }
+    }
+
+    @media (max-width: 980px) {
+      .hero-grid,
+      .pricing-grid,
+      .split,
+      .contact-panel {
+        grid-template-columns: 1fr;
+      }
+
+      .services-grid,
+      .process,
+      .gallery-grid,
+      .testimonial-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .section-head {
+        display: block;
+      }
+
+      .section-head p {
+        margin-top: 14px;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .container {
+        width: min(100% - 24px, 1120px);
+      }
+
+      .nav-inner {
+        min-height: 64px;
+      }
+
+      .menu-toggle {
+        display: grid;
+        place-items: center;
+      }
+
+      .nav-links {
+        position: absolute;
+        left: 16px;
+        right: 16px;
+        top: 72px;
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        padding: 16px;
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        background: rgba(5, 9, 20, .96);
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .nav-cta {
+        width: 100%;
+      }
+
+      .hero {
+        padding: 38px 0 34px;
+      }
+
+      .hero-grid {
+        gap: 24px;
+      }
+
+      h1 {
+        font-size: 2.28rem;
+        line-height: 1;
+        margin-bottom: 16px;
+      }
+
+      h2 {
+        font-size: 1.82rem;
+      }
+
+      .hero p {
+        font-size: 1rem;
+        margin-bottom: 20px;
+      }
+
+      .eyebrow {
+        margin-bottom: 12px;
+        font-size: .78rem;
+      }
+
+      .hero-actions {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+
+      .preview {
+        display: none;
+      }
+
+      .hero-stats,
+      .services-grid,
+      .process {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .gallery-grid,
+      .testimonial-grid,
+      .mock-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-stats {
+        gap: 8px;
+        margin-top: 22px;
+      }
+
+      .stat {
+        padding: 12px 10px;
+      }
+
+      .stat strong {
+        font-size: 1.05rem;
+      }
+
+      .stat span {
+        font-size: .76rem;
+      }
+
+      .card,
+      .step {
+        padding: 14px;
+      }
+
+      .card h3,
+      .step h3 {
+        font-size: .95rem;
+      }
+
+      .card p,
+      .card li,
+      .step p {
+        font-size: .84rem;
+      }
+
+      .icon {
+        width: 34px;
+        height: 34px;
+        margin-bottom: 12px;
+      }
+
+      .icon svg {
+        width: 17px;
+        height: 17px;
+      }
+
+      .price-card {
+        padding: 20px;
+      }
+
+      .price strong {
+        font-size: 2.35rem;
+      }
+
+      .mock-hero {
+        grid-template-columns: 1fr;
+      }
+
+      section {
+        padding: 42px 0;
+      }
+
+      .section-head {
+        margin-bottom: 22px;
+      }
+
+      .feature-list {
+        gap: 9px;
+        margin: 16px 0;
+      }
+
+      .contact-panel {
+        padding: 16px;
+      }
+
+      .whatsapp-float {
+        right: 14px;
+        bottom: 14px;
+        width: 52px;
+        height: 52px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <div class="container nav-inner">
+      <a href="#inicio" class="brand" aria-label="Web Shom inicio">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M4 7h16M7 4v16M17 4v16M4 17h16"></path></svg>
+        </span>
+        <span>Web Shom</span>
+      </a>
+      <button class="menu-toggle" type="button" aria-label="Abrir menu">
+        <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg>
+      </button>
+      <nav class="nav-links" aria-label="Navegacion principal">
+        <a href="#servicios">Servicios</a>
+        <a href="#planes">Planes</a>
+        <a href="#proceso">Proceso</a>
+        <a href="#galeria">Portfolio</a>
+        <a href="#faq">FAQ</a>
+        <a class="nav-cta" href="https://api.whatsapp.com/send?phone=5493704862044&text=Hola%20Web%20Shom%2C%20quiero%20crear%20mi%20pagina%20web" target="_blank" rel="noopener">WhatsApp</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="inicio">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="reveal">
+          <span class="eyebrow">Diseño web premium para negocios</span>
+          <h1>Transformamos tu idea en una web que <span class="gradient-text">vende</span>.</h1>
+          <p>Diseño profesional, carga ultrarrápida y autogestión. Especialistas en hacer crecer negocios locales con tecnología de punta.</p>
+          <div class="hero-actions">
+            <a class="btn" href="https://api.whatsapp.com/send?phone=5493704862044&text=Hola%20Web%20Shom%2C%20quiero%20mi%20presupuesto%20sin%20cargo" target="_blank" rel="noopener">Quiero mi presupuesto sin cargo</a>
+            <a class="btn secondary" href="#planes">Ver planes</a>
+          </div>
+          <div class="hero-stats" aria-label="Beneficios principales">
+            <div class="stat"><strong>100%</strong><span>Adaptable a celulares</span></div>
+            <div class="stat"><strong>Fast</strong><span>Carga rápida</span></div>
+            <div class="stat"><strong>Pro</strong><span>Imagen moderna</span></div>
+          </div>
+        </div>
+
+        <div class="preview reveal" aria-label="Vista previa de pagina web moderna">
+          <div class="preview-top"><span></span><span></span><span></span></div>
+          <div class="preview-body">
+            <div class="mock-hero">
+              <div>
+                <div class="mock-title"></div>
+                <div class="mock-line"></div>
+                <div class="mock-line short"></div>
+              </div>
+              <div class="mock-image"></div>
+            </div>
+            <div class="mock-grid">
+              <div class="mock-card"></div>
+              <div class="mock-card"></div>
+              <div class="mock-card"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="servicios">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <div class="section-kicker">Servicios</div>
+            <h2>Todo lo necesario para que tu negocio venda y se vea mejor.</h2>
+          </div>
+          <p>Armamos páginas claras, atractivas y funcionales, pensadas para que el cliente pueda contactarte, comprar o pedir información sin vueltas.</p>
+        </div>
+        <div class="grid services-grid">
+          <article class="card reveal"><span class="icon"><svg viewBox="0 0 24 24"><path d="M12 20h9"></path><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"></path></svg></span><h3>Diseño personalizado</h3><p>La web se diseña según la idea, estilo y necesidad de cada cliente.</p></article>
+          <article class="card reveal"><span class="icon"><svg viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"></path><path d="M3 6h18M16 10a4 4 0 0 1-8 0"></path></svg></span><h3>Integración de productos</h3><p>Cargamos productos, precios, imágenes y detalles para mostrar tu catálogo.</p></article>
+          <article class="card reveal"><span class="icon"><svg viewBox="0 0 24 24"><path d="M6 6h15l-1.5 9h-12Z"></path><path d="M6 6 5 3H2"></path><circle cx="9" cy="20" r="1"></circle><circle cx="18" cy="20" r="1"></circle></svg></span><h3>Carrito funcional</h3><p>Carrito de compras listo para sumar productos y preparar pedidos.</p></article>
+          <article class="card reveal"><span class="icon"><svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"></rect><path d="M2 10h20"></path></svg></span><h3>Links de pago</h3><p>Métodos de pago funcionales mediante enlaces de pago simples.</p></article>
+          <article class="card reveal"><span class="icon"><svg viewBox="0 0 24 24"><path d="M21 15a4 4 0 0 1-4 4H7l-4 4V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4Z"></path></svg></span><h3>Formularios de contacto</h3><p>Consultas desde la página para recibir mensajes de potenciales clientes.</p></article>
+          <article class="card reveal"><span class="icon"><svg viewBox="0 0 24 24"><path d="M4 4h16v16H4z"></path><path d="m22 6-10 7L2 6"></path></svg></span><h3>Pedidos al Gmail</h3><p>Los mensajes de pedidos pueden enviarse automáticamente al Gmail del cliente.</p></article>
+          <article class="card reveal"><span class="icon"><svg viewBox="0 0 24 24"><path d="m13 2-2 2 2 2"></path><path d="M11 4h4a5 5 0 0 1 0 10H7"></path><path d="m11 22 2-2-2-2"></path><path d="M13 20H9a5 5 0 0 1 0-10h8"></path></svg></span><h3>Imágenes animadas</h3><p>Agregamos movimiento visual si el proyecto lo necesita.</p></article>
+          <article class="card reveal"><span class="icon"><svg viewBox="0 0 24 24"><rect x="7" y="2" width="10" height="20" rx="2"></rect><path d="M11 18h2"></path></svg></span><h3>Optimización móvil</h3><p>Tu página se ve bien en celular, tablet y PC desde el primer día.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="planes">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <div class="section-kicker">Planes y precios</div>
+            <h2>Una inversión clara para tener presencia profesional.</h2>
+          </div>
+        </div>
+        <div class="grid pricing-grid">
+          <article class="price-card reveal">
+            <p class="section-kicker">Página web completa</p>
+            <div class="price"><strong>$30.000</strong><span class="muted">precio base</span></div>
+            <p class="muted">Ideal para negocios que necesitan una web moderna, adaptable y lista para recibir consultas o pedidos.</p>
+            <ul class="feature-list">
+              <li>Diseño a medida con estética profesional.</li>
+              <li>Secciones principales, contacto y galería.</li>
+              <li>Preparada para productos, carrito y links de pago.</li>
+              <li>Optimización para celulares, tablets y PC.</li>
+            </ul>
+            <a class="btn" href="https://api.whatsapp.com/send?phone=5493704862044&text=Hola%20Web%20Shom%2C%20quiero%20consultar%20por%20la%20pagina%20web%20completa" target="_blank" rel="noopener">Quiero mi web</a>
+          </article>
+          <div class="mini-prices">
+            <article class="card reveal"><h3>Mantenimiento mensual</h3><p>Opción disponible para mantener la página actualizada, revisar contenido y acompañar mejoras.</p></article>
+            <article class="card reveal"><h3>Cambios y modificaciones</h3><div class="price"><strong>$10.000</strong><span class="muted">por cambio solicitado</span></div><p>Ajustes de contenido, secciones, imágenes o funcionalidades según lo que necesites.</p></article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="proceso">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <div class="section-kicker">Proceso de trabajo</div>
+            <h2>De tu idea a una página funcionando.</h2>
+          </div>
+        </div>
+        <div class="grid process">
+          <article class="step reveal"><h3>Idea</h3><p class="muted">El cliente explica qué necesita y qué quiere mostrar.</p></article>
+          <article class="step reveal"><h3>Diseño</h3><p class="muted">Se crea una página a medida con estilo profesional.</p></article>
+          <article class="step reveal"><h3>Avances</h3><p class="muted">Se muestran progresos para revisar el rumbo.</p></article>
+          <article class="step reveal"><h3>Pruebas</h3><p class="muted">Se prueba en distintos dispositivos y pantallas.</p></article>
+          <article class="step reveal"><h3>Entrega</h3><p class="muted">La página queda lista y funcionando.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="galeria">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <div class="section-kicker">Portfolio</div>
+            <h2>Paginas creadas por Web Shom.</h2>
+          </div>
+          <p>Estos son trabajos reales y espacios preparados para sumar nuevos proyectos cuando los publiques.</p>
+        </div>
+        <div class="grid gallery-grid">
+          <article class="card project reveal">
+            <div class="project-visual ima-games">
+              <span class="project-badge">Proyecto publicado</span>
+            </div>
+            <div class="project-content">
+              <h3>Ima Games</h3>
+              <p>Pagina web de juegos con diseno visual propio y enlace publico para redes sociales.</p>
+              <div class="project-meta">
+                <span>Web publicada</span>
+                <span>Responsive</span>
+                <span>Proyecto real</span>
+              </div>
+              <a class="btn secondary" href="https://elmde34-dot.github.io/Ima.games/" target="_blank" rel="noopener">Ver pagina</a>
+            </div>
+          </article>
+          <article class="card project reveal">
+            <div class="project-visual">
+              <span class="project-badge">Proximo proyecto</span>
+            </div>
+            <div class="project-content">
+              <h3>Tienda online</h3>
+              <p>Espacio reservado para una tienda con catalogo, carrito y links de pago.</p>
+              <div class="project-meta">
+                <span>Catalogo</span>
+                <span>Carrito</span>
+              </div>
+            </div>
+          </article>
+          <article class="card project reveal">
+            <div class="project-visual">
+              <span class="project-badge">Proximo proyecto</span>
+            </div>
+            <div class="project-content">
+              <h3>Landing profesional</h3>
+              <p>Espacio reservado para una pagina de presentacion enfocada en recibir consultas.</p>
+              <div class="project-meta">
+                <span>Servicios</span>
+                <span>WhatsApp</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="testimonios">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <div class="section-kicker">Testimonios</div>
+            <h2>Clientes que necesitaban verse mejor online.</h2>
+          </div>
+        </div>
+        <div class="grid testimonial-grid">
+          <article class="card reveal"><p class="quote">"La página quedó moderna, rápida y muy fácil de mostrar a mis clientes."</p><span class="person">Cliente local</span></article>
+          <article class="card reveal"><p class="quote">"Me ayudaron a ordenar mis productos y recibir pedidos de forma más prolija."</p><span class="person">Emprendimiento online</span></article>
+          <article class="card reveal"><p class="quote">"El diseño se adaptó perfecto a la idea que tenía para mi negocio."</p><span class="person">Marca de servicios</span></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq">
+      <div class="container split">
+        <div class="reveal">
+          <div class="section-kicker">Preguntas frecuentes</div>
+          <h2>Respuestas rápidas antes de empezar.</h2>
+          <p class="muted">Si tenés otra consulta, escribinos por WhatsApp y vemos tu caso puntual.</p>
+        </div>
+        <div class="faq-list reveal">
+          <details open>
+            <summary>¿La página funciona en celular?</summary>
+            <p>Sí. El diseño se adapta a celular, tablet y PC para que se vea bien en cualquier pantalla.</p>
+          </details>
+          <details>
+            <summary>¿Se pueden cargar productos?</summary>
+            <p>Sí. Podemos integrar productos, imágenes, precios y detalles para crear un catálogo o tienda.</p>
+          </details>
+          <details>
+            <summary>¿El carrito y los pagos funcionan?</summary>
+            <p>Sí. Se puede preparar un carrito funcional y conectar pagos mediante links de pago.</p>
+          </details>
+          <details>
+            <summary>¿Puedo pedir cambios después?</summary>
+            <p>Sí. Los cambios y modificaciones se realizan por $10.000 cada cambio solicitado.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section id="contacto">
+      <div class="container">
+        <div class="contact-panel reveal">
+          <div>
+            <div class="section-kicker">Contacto</div>
+            <h2>Hablemos de tu página web.</h2>
+            <p class="muted">Contanos qué negocio tenés, qué necesitás y qué estilo te gustaría. Te respondemos para avanzar con una propuesta clara.</p>
+            <div class="contact-methods">
+              <a class="contact-method" href="https://api.whatsapp.com/send?phone=5493704862044&text=Hola%20Web%20Shom%2C%20quiero%20mas%20informacion" target="_blank" rel="noopener"><span class="icon">W</span><span><strong>WhatsApp</strong><br><span class="muted">3704 862044</span></span></a>
+              <a class="contact-method" href="mailto:el.mde34@gmail.com?subject=Consulta%20por%20pagina%20web"><span class="icon">@</span><span><strong>Gmail</strong><br><span class="muted">el.mde34@gmail.com</span></span></a>
+            </div>
+          </div>
+          <form id="contactForm" action="https://formsubmit.co/el.mde34@gmail.com" method="POST">
+            <input type="hidden" name="_subject" value="Nueva consulta desde Web Shom">
+            <input type="hidden" name="_template" value="table">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="text" id="name" name="name" placeholder="Tu nombre" required>
+            <input type="email" id="email" name="email" placeholder="Tu Gmail" required>
+            <input type="tel" id="phone" name="phone" placeholder="Tu WhatsApp">
+            <textarea id="message" name="message" placeholder="Contanos que tipo de pagina queres" required></textarea>
+            <button class="btn" type="submit">Enviar consulta</button>
+            <p class="muted" id="formStatus" role="status"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <p>Web Shom © <span id="year"></span>. Diseño y desarrollo de páginas web.</p>
+      <div class="socials" aria-label="Redes sociales">
+        <a href="#inicio" aria-label="Web Shom">WS</a>
+        <a href="https://api.whatsapp.com/send?phone=5493704862044" target="_blank" rel="noopener" aria-label="WhatsApp">WA</a>
+        <a href="mailto:el.mde34@gmail.com" aria-label="Gmail">@</a>
+      </div>
+    </div>
+  </footer>
+
+  <a class="whatsapp-float" href="https://api.whatsapp.com/send?phone=5493704862044&text=Hola%20Web%20Shom%2C%20quiero%20crear%20mi%20pagina%20web" target="_blank" rel="noopener" aria-label="Contactar por WhatsApp">
+    <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16.04 3.2A12.75 12.75 0 0 0 5.1 22.48L3.2 29l6.68-1.76A12.75 12.75 0 1 0 16.04 3.2Zm0 2.34a10.41 10.41 0 0 1 8.85 15.9 10.4 10.4 0 0 1-13.98 3.63l-.48-.28-3.96 1.04 1.06-3.84-.31-.5A10.41 10.41 0 0 1 16.04 5.54Zm-4.43 5.75c-.24 0-.62.09-.95.45-.33.36-1.25 1.22-1.25 2.97s1.28 3.45 1.46 3.69c.18.24 2.48 3.98 6.12 5.42 3.03 1.2 3.65.96 4.31.9.66-.06 2.14-.87 2.44-1.72.3-.84.3-1.57.21-1.72-.09-.15-.33-.24-.69-.42-.36-.18-2.14-1.06-2.47-1.18-.33-.12-.57-.18-.81.18-.24.36-.93 1.18-1.14 1.42-.21.24-.42.27-.78.09-.36-.18-1.52-.56-2.9-1.79-1.07-.95-1.79-2.13-2-2.49-.21-.36-.02-.55.16-.73.16-.16.36-.42.54-.63.18-.21.24-.36.36-.6.12-.24.06-.45-.03-.63-.09-.18-.81-1.95-1.11-2.67-.29-.7-.59-.6-.81-.61h-.69Z"></path></svg>
+  </a>
+
+  <script>
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+    const revealItems = document.querySelectorAll('.reveal');
+    const contactForm = document.getElementById('contactForm');
+    const formStatus = document.getElementById('formStatus');
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('open');
+    });
+
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => navLinks.classList.remove('open'));
+    });
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    revealItems.forEach(item => observer.observe(item));
+
+    contactForm.addEventListener('submit', () => {
+      formStatus.textContent = 'Enviando la consulta al correo...';
+    });
+  </script>
+</body>
+</html>
